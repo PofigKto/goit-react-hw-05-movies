@@ -7,11 +7,11 @@ async function fetchWithErrorHandling(url = '', config = {}) {
     : Promise.reject(new Error('Not found'));
 }
 
-// export function getReviews() {
-//   //   return fetchWithErrorHandling(
-//     `${BASE_URL}/trending/all/day?api_key=${API_KEY}`
-//   );
-// }
+export function getCredits() {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US`
+  );
+}
 
 export function GetTrending() {
   return fetchWithErrorHandling(

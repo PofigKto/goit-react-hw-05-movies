@@ -38,7 +38,7 @@ export default function HomeView() {
               {/* пишемо куди ми переходимо через шаблонну строку  */}
               {/* <Link to={`/books/${book.id}`}>{book.title}</Link> */}
               {/* тут замість букс ставимо юрл */}
-              <Link to={`/${movie.id}`}>{movie.title}</Link>
+              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
         </ul>

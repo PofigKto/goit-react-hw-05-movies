@@ -1,7 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
 import PageHeading from '../components/PageHeading/PageHeading';
 import * as movieAPI from '../services/movies-api';
+import styled from 'styled-components';
+
+const Link = styled.div`
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 18px;
+`;
 
 export default function MovieDetailsView() {
   // щоб отримати айдішнік одного фільму викоритовуємо ху - юз парамс
@@ -59,6 +69,20 @@ export default function MovieDetailsView() {
               ''
             )} */}
           </p>
+
+          <p>Additional information</p>
+          <Link>
+            <NavLink to={`/movies/${movie.id}/cast`} className="Link">
+              Cast
+            </NavLink>
+          </Link>
+
+          <Link>
+            <NavLink to={`/movies/${movie.id}/reviews`} className="Link">
+              Reviews
+            </NavLink>
+          </Link>
+
           <Outlet />
         </>
       )}
