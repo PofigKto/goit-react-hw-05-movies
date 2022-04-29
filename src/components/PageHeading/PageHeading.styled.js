@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const Title = styled.h1`
-  width: 240px;
+  width: 300px;
   padding: 8px;
   margin-top: 0;
   border-radius: 8px;

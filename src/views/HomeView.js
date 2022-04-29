@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // import { Link, useRouteMatch } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
@@ -21,8 +21,8 @@ export default function HomeView() {
     moviesAPI.GetTrending().then(response => setMovies(response.results));
   }, []);
   console.log(movies);
-  const params = useParams;
-  console.log(params);
+  // const {} = useParams;
+  // console.log(params);
   return (
     <>
       <PageHeading text="Trending today" />
@@ -43,7 +43,6 @@ export default function HomeView() {
           ))}
         </ul>
       )}
-      <Outlet />
     </>
   );
 }

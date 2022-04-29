@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import PageHeading from '../components/PageHeading/PageHeading';
 import * as movieAPI from '../services/movies-api';
 
@@ -17,22 +17,49 @@ export default function MovieDetailsView() {
   // обявляємо стейт для одного фільму і роблю юзефект фетч по муві айді і потім записую це в сетмуві
   const [movie, setMovie] = useState(null);
   console.log(movie);
+
   useEffect(() => {
     movieAPI.getMoviesById(movieId).then(response => setMovie(response));
   }, [movieId]);
 
+  const viewPoster = poster_path => {
+    if (poster_path === null) {
+      return 'NO POSTER';
+    }
+    return `https://image.tmdb.org/t/p/w300${poster_path}`;
+  };
+  const userScore = vote_average => {
+    return vote_average * 10 + '%';
+  };
+  const allGenres = genres => {
+    if (genres === null) {
+      return;
+    }
+    return genres.map(genre => genre.name).join(', ');
+  };
   return (
     <>
-      <PageHeading text={`${movieId}`} />
       {/* тут використовуємо динамічний параметр взятий з юзпарамс */}
-
       {/* якщо прийшда відповідь з бекенду(є фільми) ми можемо щось зарендерить, вибираємо з обєкта що нам потрібно (або це може бути окремий компонент типу карточка фільм кард) */}
       {movie && (
         <>
-          <img src={movie.poster_path} alt={movie.title} />
+          <PageHeading text={`${movie.title}`} />
+          <img src={`${viewPoster(movie.poster_path)}`} alt={movie.title} />
           <h2>{movie.title}</h2>
-          <p> Популярність: {movie.popularity}</p>
-          <p> Опис: {movie.overview}</p>
+          {/* <p> Популярність: {movie.popularity}</p> */}
+          <p> Overview: {movie.overview}</p>
+          <p> User score: {`${userScore(movie.vote_average)}`}</p>
+          <p>
+            {' '}
+            Genres: {`${allGenres(movie.genres)}`}
+            {/* інший варіант через редьюс - перший аргумент функціі колбек, що приймає акк і текуще значення, 
+                      і другий аргумент редьюса - пуста строчка, куди буде записуватись значення і між ними пробел */}
+            {/* {movie.genres.reduce(
+              (acc, currrent) => acc + ' ' + currrent.name,
+              ''
+            )} */}
+          </p>
+          <Outlet />
         </>
       )}
     </>

@@ -7,9 +7,8 @@ async function fetchWithErrorHandling(url = '', config = {}) {
     : Promise.reject(new Error('Not found'));
 }
 
-// export function fetchAuthors() {
-//   // тут в запросе есть ємбед букс - єто для того чтобі прицепить к авторам его книги по айдишнику автора, єто делает сам бекенд такой
-//   return fetchWithErrorHandling(
+// export function getReviews() {
+//   //   return fetchWithErrorHandling(
 //     `${BASE_URL}/trending/all/day?api_key=${API_KEY}`
 //   );
 // }
