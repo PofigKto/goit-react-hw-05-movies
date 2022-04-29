@@ -1,16 +1,23 @@
+import { Routes, Route } from 'react-router-dom';
+import AppBar from './AppBar/Appbar';
+import Container from './Container/Container';
+import HomeView from '../views/HomeView';
+import MovieDetailsView from '../views/MovieDetailsView';
+// import MoviesView from '../views/MoviesView';
+// import AuthorsView from './views/AuthorsView';
+// import NotFoundView from './views/NotFoundView';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Container>
+      <AppBar />
+      <Routes>
+        <Route path="/" element={<HomeView />}>
+          {/* сюди рендерим компонент, який відповідає за показування одного лише фільму */}
+          <Route path=":movieId" element={<MovieDetailsView />}></Route>
+          {/* <Route path="movies" element={<MoviesView />}></Route> */}
+        </Route>
+      </Routes>
+    </Container>
   );
 };
