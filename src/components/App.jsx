@@ -20,7 +20,7 @@ export const App = () => {
         <Route path="movies" element={<MoviesView />}>
           <Route path=":movieId" element={<MovieDetailsView />}>
             <Route path="cast" element={<MoviesCredits />}></Route>
-            <Route path="reviews" element={<MoviesCredits />}></Route>
+            {/* <Route path="reviews" element={<MoviesCredits />}></Route> */}
           </Route>
           {/* сюди рендерим компонент, який відповідає за показування одного лише фільму */}
         </Route>

@@ -76,14 +76,12 @@ export default function MovieDetailsView() {
               Cast
             </NavLink>
           </Link>
-
-          <Link>
+          <Outlet />
+          {/* <Link>
             <NavLink to={`/movies/${movie.id}/reviews`} className="Link">
               Reviews
             </NavLink>
-          </Link>
-
-          <Outlet />
+          </Link> */}
         </>
       )}
     </>

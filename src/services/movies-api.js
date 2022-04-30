@@ -7,9 +7,9 @@ async function fetchWithErrorHandling(url = '', config = {}) {
     : Promise.reject(new Error('Not found'));
 }
 
-export function getCredits() {
+export function getCredits(movieId) {
   return fetchWithErrorHandling(
-    `${BASE_URL}/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US`
+    `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
   );
 }
 
