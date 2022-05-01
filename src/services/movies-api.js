@@ -7,9 +7,21 @@ async function fetchWithErrorHandling(url = '', config = {}) {
     : Promise.reject(new Error('Not found'));
 }
 
-export function getCredits(movieId) {
+export function getMovieBySearch(query) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/search/movie?&query=${query}&api_key=${API_KEY}&language=en-US&page=1&include_adult=false`
+  );
+}
+
+export function getCast(movieId) {
   return fetchWithErrorHandling(
     `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+  );
+}
+
+export function getReviews(movieId) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`
   );
 }
 

@@ -21,7 +21,6 @@ export default function MovieDetailsView() {
   // повертає нам обєкт динамічних параметрів
   //беремо диструктуризуємо з парамс фільмайді
   const { movieId } = useParams();
-
   // ми ще раз робимо хттп запис, тому що якщо користувач просто заходить по ссилці на сторінку однієї книги, то у нас не рендерилися попередні список книг, де був запит на бекенд, і ніякої відповіді від бекенду немає.
   // ще раз - це якщо користувач відразу ввів адресу однієї книги
   // обявляємо стейт для одного фільму і роблю юзефект фетч по муві айді і потім записую це в сетмуві
@@ -34,19 +33,23 @@ export default function MovieDetailsView() {
 
   const viewPoster = poster_path => {
     if (poster_path === null) {
-      return 'NO POSTER';
+      return 'https://wipfilms.net/wp-content/data/posters/tt0338683.jpg';
+      // 'NO POSTER';
     }
     return `https://image.tmdb.org/t/p/w300${poster_path}`;
   };
+
   const userScore = vote_average => {
     return vote_average * 10 + '%';
   };
+
   const allGenres = genres => {
     if (genres === null) {
       return;
     }
     return genres.map(genre => genre.name).join(', ');
   };
+
   return (
     <>
       {/* тут використовуємо динамічний параметр взятий з юзпарамс */}
@@ -54,13 +57,13 @@ export default function MovieDetailsView() {
       {movie && (
         <>
           <PageHeading text={`${movie.title}`} />
+
           <img src={`${viewPoster(movie.poster_path)}`} alt={movie.title} />
           <h2>{movie.title}</h2>
           {/* <p> Популярність: {movie.popularity}</p> */}
           <p> Overview: {movie.overview}</p>
           <p> User score: {`${userScore(movie.vote_average)}`}</p>
           <p>
-            {' '}
             Genres: {`${allGenres(movie.genres)}`}
             {/* інший варіант через редьюс - перший аргумент функціі колбек, що приймає акк і текуще значення, 
                       і другий аргумент редьюса - пуста строчка, куди буде записуватись значення і між ними пробел */}
@@ -76,12 +79,13 @@ export default function MovieDetailsView() {
               Cast
             </NavLink>
           </Link>
-          <Outlet />
-          {/* <Link>
+
+          <Link>
             <NavLink to={`/movies/${movie.id}/reviews`} className="Link">
               Reviews
             </NavLink>
-          </Link> */}
+          </Link>
+          <Outlet />
         </>
       )}
     </>
