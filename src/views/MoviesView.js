@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 // import { NavLink, Outlet } from 'react-router-dom';
 import FormBySearch from 'components/SearchForm/SearchForm';
 import { toast } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
 import * as movieAPI from '../services/movies-api';
 // import * as moviesAPI from '../services/movies-api';
 // import PageHeading from '../components/PageHeading/PageHeading';
@@ -19,7 +20,7 @@ import * as movieAPI from '../services/movies-api';
 
 export default function MoviesView() {
   const [searchMovie, setSearchMovie] = useState('');
-  const [movie, setMovie] = useState('');
+  const [movie, setMovie] = useState([]);
   console.log(movie);
   useEffect(() => {
     if (!searchMovie) {
@@ -27,25 +28,14 @@ export default function MoviesView() {
     }
     movieAPI.getMovieBySearch(searchMovie).then(response => {
       if (response.results.length === 0) {
-        toast.error(
-          'Sorry, there are no movies matching your search query. Please try again.',
-          {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          }
+        return toast.info(
+          'Sorry, there are no movies matching your search query. Please try again.'
         );
-        // toast.info(
-        //   'Sorry, there are no movies matching your search query. Please try again.'
-        // );
       }
       setMovie(response.results);
+      // console.log(movie);
     });
-  }, [searchMovie]);
+  }, [searchMovie, movie]);
 
   const handleFormSubmit = searchMovie => {
     console.log(searchMovie);
@@ -55,6 +45,19 @@ export default function MoviesView() {
   };
   return (
     <>
+      {/* <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        icon={false}
+      /> */}
+
       {/* <PageHeading text="Search films" /> */}
       <FormBySearch inSubmit={handleFormSubmit} />
 

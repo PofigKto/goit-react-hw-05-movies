@@ -6,32 +6,21 @@ import MovieDetailsView from '../views/MovieDetailsView';
 import MoviesView from '../views/MoviesView';
 import MoviesCast from '../views/MovieCast';
 import MoviesReviews from '../views/MoviesReviews';
-// import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // import NotFoundView from './views/NotFoundView';
 
 export const App = () => {
   return (
     <Container>
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        icon={false}
-      /> */}
-
-      {/* <ToastContainer
-        icon={false}
+      <AppBar />
+      <ToastContainer
         position={'top-center'}
         autoClose={3000}
+        // theme={'light'}
         theme={'colored'}
-      /> */}
-      <AppBar />
+      />
       <Routes>
         <Route path="/" element={<HomeView />}></Route>
 
