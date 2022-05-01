@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import './Searchbar.styled.js';
 import {
-  //   Searchbar,
   SearchForm,
   SearchFormButton,
   SearchFormButtonLabel,
@@ -12,7 +11,7 @@ import {
 } from './Searchbar.styled';
 
 export default function FormBySearch(props) {
-  const [searchMovie, setSearchMovie] = useState('');
+  const [searchMovie, setSearchMovie] = useState(props.searchMovie);
   // обновляє стейт при кожному нажатии в инпуті
   const handleChange = event => {
     setSearchMovie(event.currentTarget.value.toLowerCase());
@@ -34,7 +33,6 @@ export default function FormBySearch(props) {
     // setSearchImage('');
   };
   return (
-    // <Searchbar>
     <SearchForm onSubmit={handleSubmit}>
       <SearchFormButton type="submit">
         <SearchFormButtonLabel>Search</SearchFormButtonLabel>
@@ -48,10 +46,10 @@ export default function FormBySearch(props) {
         onChange={handleChange}
       />
     </SearchForm>
-    // </Searchbar>
   );
 }
 
 FormBySearch.propTypes = {
   searchMovie: PropTypes.string,
+  inSubmit: PropTypes.func,
 };

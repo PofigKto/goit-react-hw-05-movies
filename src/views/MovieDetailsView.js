@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams, useNavigate } from 'react-router-dom';
 import PageHeading from '../components/PageHeading/PageHeading';
 import * as movieAPI from '../services/movies-api';
 import styled from 'styled-components';
@@ -14,23 +14,23 @@ const Link = styled.div`
 `;
 
 export default function MovieDetailsView() {
-  // щоб отримати айдішнік одного фільму викоритовуємо ху - юз парамс
-  const params = useParams();
-  //   const params = { params: useParams() };
-  console.log(params);
+  // щоб отримати айдішнік одного фільму викоритовуємо хук - юз парамс
+  // const params = useParams();
+  // console.log(params);
   // повертає нам обєкт динамічних параметрів
   //беремо диструктуризуємо з парамс фільмайді
   const { movieId } = useParams();
-  // ми ще раз робимо хттп запис, тому що якщо користувач просто заходить по ссилці на сторінку однієї книги, то у нас не рендерилися попередні список книг, де був запит на бекенд, і ніякої відповіді від бекенду немає.
-  // ще раз - це якщо користувач відразу ввів адресу однієї книги
+  // ми ще раз робимо хттп запит, тому що якщо користувач просто заходить по ссилці на сторінку одного фільму, то у нас не рендерилися попередні список фільмфі, де був запит на бекенд, і ніякої відповіді від бекенду немає.
+  // ще раз - це якщо користувач відразу ввів адресу одного фільму
   // обявляємо стейт для одного фільму і роблю юзефект фетч по муві айді і потім записую це в сетмуві
   const [movie, setMovie] = useState(null);
-  console.log(movie);
+  // console.log(movie);
+  const navigate = useNavigate();
 
   useEffect(() => {
     movieAPI.getMoviesById(movieId).then(response => setMovie(response));
   }, [movieId]);
-
+  // функція що перевіряє чи є постер до фільму
   const viewPoster = poster_path => {
     if (poster_path === null) {
       return 'https://wipfilms.net/wp-content/data/posters/tt0338683.jpg';
@@ -38,11 +38,11 @@ export default function MovieDetailsView() {
     }
     return `https://image.tmdb.org/t/p/w300${poster_path}`;
   };
-
+  // функція для переводу оцінки користувача в %
   const userScore = vote_average => {
     return vote_average * 10 + '%';
   };
-
+  // тут перебираємо масив із жанрами через кому і пробел
   const allGenres = genres => {
     if (genres === null) {
       return;
@@ -52,15 +52,17 @@ export default function MovieDetailsView() {
 
   return (
     <>
+      <button type="button" onClick={() => navigate(-1)}>
+        {' '}
+        GO BACK{' '}
+      </button>
       {/* тут використовуємо динамічний параметр взятий з юзпарамс */}
       {/* якщо прийшда відповідь з бекенду(є фільми) ми можемо щось зарендерить, вибираємо з обєкта що нам потрібно (або це може бути окремий компонент типу карточка фільм кард) */}
       {movie && (
         <>
           <PageHeading text={`${movie.title}`} />
-
           <img src={`${viewPoster(movie.poster_path)}`} alt={movie.title} />
           <h2>{movie.title}</h2>
-          {/* <p> Популярність: {movie.popularity}</p> */}
           <p> Overview: {movie.overview}</p>
           <p> User score: {`${userScore(movie.vote_average)}`}</p>
           <p>
@@ -73,7 +75,7 @@ export default function MovieDetailsView() {
             )} */}
           </p>
 
-          <p>Additional information</p>
+          <h3>Additional information</h3>
           <Link>
             <NavLink to={`/movies/${movie.id}/cast`} className="Link">
               Cast
@@ -85,6 +87,7 @@ export default function MovieDetailsView() {
               Reviews
             </NavLink>
           </Link>
+          {/* тут будуть рендериться відповідні інфо без перезагрузки сторінки */}
           <Outlet />
         </>
       )}

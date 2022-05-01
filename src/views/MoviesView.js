@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-// import { NavLink, Outlet } from 'react-router-dom';
-import FormBySearch from 'components/SearchForm/SearchForm';
-import { toast } from 'react-toastify';
+// import { NavLink } from 'react-router-dom';
+// import FormBySearch from 'components/SearchForm/SearchForm';
+// import { toast } from 'react-toastify';
 // import { ToastContainer } from 'react-toastify';
-import * as movieAPI from '../services/movies-api';
-// import * as moviesAPI from '../services/movies-api';
-// import PageHeading from '../components/PageHeading/PageHeading';
+// import * as movieAPI from '../services/movies-api';
 // import styled from 'styled-components';
 
 // const Link = styled.div`
@@ -19,54 +17,50 @@ import * as movieAPI from '../services/movies-api';
 // `;
 
 export default function MoviesView() {
-  const [searchMovie, setSearchMovie] = useState('');
-  const [movie, setMovie] = useState([]);
-  console.log(movie);
-  useEffect(() => {
-    if (!searchMovie) {
-      return;
-    }
-    movieAPI.getMovieBySearch(searchMovie).then(response => {
-      if (response.results.length === 0) {
-        return toast.info(
-          'Sorry, there are no movies matching your search query. Please try again.'
-        );
-      }
-      setMovie(response.results);
-      // console.log(movie);
-    });
-  }, [searchMovie, movie]);
+  // const [searchMovie, setSearchMovie] = useState('');
+  // const [movies, setMovies] = useState([]);
+  // console.log(movies);
+  // useEffect(() => {
+  //   if (!searchMovie) {
+  //     return;
+  //   }
+  //   movieAPI.getMovieBySearch(searchMovie).then(response => {
+  //     if (response.results.length === 0) {
+  //       return toast.info(
+  //         'Sorry, there are no movies matching your search query. Please try again.'
+  //       );
+  //     }
+  //     setMovies(response.results);
+  //     // console.log(movie);
+  //   });
+  // }, [searchMovie]);
 
-  const handleFormSubmit = searchMovie => {
-    console.log(searchMovie);
-    // resetPage();
-    setSearchMovie(searchMovie);
-    setMovie([]);
-  };
+  // const handleFormSubmit = searchMovie => {
+  //   console.log(searchMovie);
+  //   // resetPage();
+  //   setSearchMovie(searchMovie);
+  //   setMovies([]);
+  // };
   return (
     <>
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        icon={false}
-      /> */}
-
-      {/* <PageHeading text="Search films" /> */}
-      <FormBySearch inSubmit={handleFormSubmit} />
-
-      {/* <Link>
-        <NavLink to={`/movies/?query=${searchMovie}`} className="Link">
-          searchMovie
-        </NavLink>
-      </Link> */}
+      {/* <FormBySearch inSubmit={handleFormSubmit} /> */}
       <Outlet />
+      {/* <SearchMovieByName /> */}
+
+      {/* {movies && (
+        <ul>
+          {movies.map(movie => (
+            <NavLink
+              to={`/movies/?query=${searchMovie}`}
+              key={movie.id}
+              className="Link"
+            >
+              <p>{movie.title}</p>
+            </NavLink>
+          ))}
+        </ul>
+      )}
+      <Outlet /> */}
     </>
   );
 }
