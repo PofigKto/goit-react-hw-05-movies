@@ -20,6 +20,7 @@ import * as movieAPI from '../services/movies-api';
 export default function MoviesView() {
   const [searchMovie, setSearchMovie] = useState('');
   const [movie, setMovie] = useState('');
+  console.log(movie);
   useEffect(() => {
     if (!searchMovie) {
       return;
