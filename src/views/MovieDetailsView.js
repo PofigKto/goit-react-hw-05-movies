@@ -12,7 +12,20 @@ const Link = styled.div`
   color: #2a363b;
   font-size: 18px;
 `;
-
+const CardMovie = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #2a363b;
+`;
+const MovieInfo = styled.div`
+  display: block;
+  margin-left: 20px;
+`;
+const GoBackButton = styled.button`
+  margin-bottom: 20px;
+  background-color: lightblue;
+  border-radius: 10%;
+`;
 export default function MovieDetailsView() {
   // щоб отримати айдішнік одного фільму викоритовуємо хук - юз парамс
   // const params = useParams();
@@ -52,30 +65,37 @@ export default function MovieDetailsView() {
 
   return (
     <>
-      <button type="button" onClick={() => navigate(-1)}>
+      <GoBackButton type="button" onClick={() => navigate(-1)}>
         {' '}
         GO BACK{' '}
-      </button>
+      </GoBackButton>
       {/* тут використовуємо динамічний параметр взятий з юзпарамс */}
       {/* якщо прийшда відповідь з бекенду(є фільми) ми можемо щось зарендерить, вибираємо з обєкта що нам потрібно (або це може бути окремий компонент типу карточка фільм кард) */}
       {movie && (
         <>
           <PageHeading text={`${movie.title}`} />
-          <img src={`${viewPoster(movie.poster_path)}`} alt={movie.title} />
-          <h2>{movie.title}</h2>
-          <p> Overview: {movie.overview}</p>
-          <p> User score: {`${userScore(movie.vote_average)}`}</p>
-          <p>
-            Genres: {`${allGenres(movie.genres)}`}
-            {/* інший варіант через редьюс - перший аргумент функціі колбек, що приймає акк і текуще значення, 
+          <hr />
+          <CardMovie>
+            <img src={`${viewPoster(movie.poster_path)}`} alt={movie.title} />
+            <MovieInfo>
+              <h2> {movie.title} </h2>
+              <h3> Overview: </h3>
+              <p> {movie.overview} </p>
+              <p> User score: {`${userScore(movie.vote_average)}`} </p>
+              <h3> Genres: </h3>
+              <p>
+                {`${allGenres(movie.genres)}`}
+                {/* інший варіант через редьюс - перший аргумент функціі колбек, що приймає акк і текуще значення, 
                       і другий аргумент редьюса - пуста строчка, куди буде записуватись значення і між ними пробел */}
-            {/* {movie.genres.reduce(
+                {/* {movie.genres.reduce(
               (acc, currrent) => acc + ' ' + currrent.name,
               ''
             )} */}
-          </p>
-
-          <h3>Additional information</h3>
+                <hr />
+              </p>
+            </MovieInfo>
+          </CardMovie>
+          <h3> Additional information </h3>
           <Link>
             <NavLink to={`/movies/${movie.id}/cast`} className="Link">
               Cast

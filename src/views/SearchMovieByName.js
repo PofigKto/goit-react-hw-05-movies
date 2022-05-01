@@ -51,6 +51,7 @@ export default function SearchMovieByName() {
   return (
     <>
       <FormBySearch inSubmit={handleFormSubmit} searchMovie={searchMovie} />
+      <hr />
       {movies && (
         <ul>
           {movies.map(movie => (
