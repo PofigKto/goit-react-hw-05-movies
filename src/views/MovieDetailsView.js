@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Outlet, useParams, useNavigate } from 'react-router-dom';
 import PageHeading from '../components/PageHeading/PageHeading';
+import ButtonGoBack from '../components/Button';
 import * as movieAPI from '../services/movies-api';
 import styled from 'styled-components';
+// import { ImArrowLeft } from 'react-icons/im';
 
 const Link = styled.div`
   display: inline-block;
@@ -21,11 +23,7 @@ const MovieInfo = styled.div`
   display: block;
   margin-left: 20px;
 `;
-const GoBackButton = styled.button`
-  margin-bottom: 20px;
-  background-color: lightblue;
-  border-radius: 10%;
-`;
+
 export default function MovieDetailsView() {
   // щоб отримати айдішнік одного фільму викоритовуємо хук - юз парамс
   // const params = useParams();
@@ -39,6 +37,7 @@ export default function MovieDetailsView() {
   const [movie, setMovie] = useState(null);
   // console.log(movie);
   const navigate = useNavigate();
+  console.log(navigate);
 
   useEffect(() => {
     movieAPI.getMoviesById(movieId).then(response => setMovie(response));
@@ -65,10 +64,7 @@ export default function MovieDetailsView() {
 
   return (
     <>
-      <GoBackButton type="button" onClick={() => navigate(-1)}>
-        {' '}
-        GO BACK{' '}
-      </GoBackButton>
+      <ButtonGoBack />
       {/* тут використовуємо динамічний параметр взятий з юзпарамс */}
       {/* якщо прийшда відповідь з бекенду(є фільми) ми можемо щось зарендерить, вибираємо з обєкта що нам потрібно (або це може бути окремий компонент типу карточка фільм кард) */}
       {movie && (
