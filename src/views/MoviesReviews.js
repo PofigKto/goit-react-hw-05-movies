@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
 
 export default function MoviesReviews() {
-  const params = useParams();
-  console.log(params);
+  // const params = useParams();
+  // console.log(params);
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 

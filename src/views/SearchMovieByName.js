@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-// import { Outlet } from 'react-router-dom';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import FormBySearch from 'components/SearchForm/SearchForm';
 import { toast } from 'react-toastify';
-// import { ToastContainer } from 'react-toastify';
 import * as movieAPI from '../services/movies-api';
 // import styled from 'styled-components';
 

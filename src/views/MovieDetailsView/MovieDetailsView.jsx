@@ -1,9 +1,19 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useParams, useNavigate } from 'react-router-dom';
-import PageHeading from '../components/PageHeading/PageHeading';
-import ButtonGoBack from '../components/Button';
-import * as movieAPI from '../services/movies-api';
+import {
+  NavLink,
+  Outlet,
+  useParams,
+  // useNavigate,
+  useLocation,
+} from 'react-router-dom';
+import PageHeading from '../../components/PageHeading/PageHeading';
+import ButtonGoBack from '../../components/Button';
+import * as movieAPI from '../../services/movies-api';
 import styled from 'styled-components';
+import {
+  CardMovie,
+  MovieInfo,
+} from '../MovieDetailsView/MovieDetailsView.styled';
 // import { ImArrowLeft } from 'react-icons/im';
 
 const Link = styled.div`
@@ -13,15 +23,6 @@ const Link = styled.div`
   font-weight: 500;
   color: #2a363b;
   font-size: 18px;
-`;
-const CardMovie = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #2a363b;
-`;
-const MovieInfo = styled.div`
-  display: block;
-  margin-left: 20px;
 `;
 
 export default function MovieDetailsView() {
@@ -36,8 +37,10 @@ export default function MovieDetailsView() {
   // обявляємо стейт для одного фільму і роблю юзефект фетч по муві айді і потім записую це в сетмуві
   const [movie, setMovie] = useState(null);
   // console.log(movie);
-  const navigate = useNavigate();
-  console.log(navigate);
+  // const navigate = useNavigate();
+  // console.log(navigate);
+  const location = useLocation;
+  console.log(location);
 
   useEffect(() => {
     movieAPI.getMoviesById(movieId).then(response => setMovie(response));
@@ -94,13 +97,15 @@ export default function MovieDetailsView() {
           <h3> Additional information </h3>
           <Link>
             <NavLink to={`/movies/${movie.id}/cast`} className="Link">
-              Cast
+              <PageHeading text="Cast" />
+              {/* Cast */}
             </NavLink>
           </Link>
 
           <Link>
             <NavLink to={`/movies/${movie.id}/reviews`} className="Link">
-              Reviews
+              <PageHeading text="Reviews" />
+              {/* Reviews */}
             </NavLink>
           </Link>
           {/* тут будуть рендериться відповідні інфо без перезагрузки сторінки */}

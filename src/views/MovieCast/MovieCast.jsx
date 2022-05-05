@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as moviesAPI from '../../services/movies-api';
+import {
+  CastGallery,
+  Character,
+  CharacterValue,
+  CastName,
+} from '../MovieCast/MovieCast.styled';
 
 export default function MoviesCast() {
   const params = useParams();
@@ -22,18 +28,25 @@ export default function MoviesCast() {
   return (
     <>
       {cast && (
-        <ul>
+        <CastGallery>
           {cast.map(castOne => (
             <li key={castOne.id}>
               <img
                 src={`${viewPoster(castOne.profile_path)}`}
                 alt={castOne.name}
+                width="240"
               />
-              <h3>{castOne.name}</h3>
-              <p> Character: {castOne.character}</p>
+              <CastName>{castOne.name}</CastName>
+              <Character>
+                {' '}
+                Character:<CharacterValue>
+                  {' '}
+                  {castOne.character}{' '}
+                </CharacterValue>{' '}
+              </Character>
             </li>
           ))}
-        </ul>
+        </CastGallery>
       )}
     </>
   );

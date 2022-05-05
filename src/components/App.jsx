@@ -16,7 +16,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const HomeView = lazy(() => import('../views/HomeView'));
 const MoviesView = lazy(() => import('../views/MoviesView'));
 const SearchMovieByName = lazy(() => import('../views/SearchMovieByName'));
-const MovieDetailsView = lazy(() => import('../views/MovieDetailsView'));
+const MovieDetailsView = lazy(() =>
+  import('../views/MovieDetailsView/MovieDetailsView')
+);
 const MoviesCast = lazy(() => import('../views/MovieCast'));
 const MoviesReviews = lazy(() => import('../views/MoviesReviews'));
 const NotFoundView = lazy(() => import('../views/NotFoundView'));
