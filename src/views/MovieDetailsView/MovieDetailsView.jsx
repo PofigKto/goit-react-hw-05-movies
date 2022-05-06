@@ -76,15 +76,13 @@ export default function MovieDetailsView() {
         <>
           <ButtonGoBack onClick={() => navigate(-1)} />
           <PageHeading text={`${movie.title}`} />
-          <Horizontal
-          // style={{
-          //   height: '12px',
-          //   border: '0',
-          //   boxShadow: 'inset 0 12px 12px -12px rgba(0,0,0,0.5)',
-          // }}
-          />
+          <Horizontal />
           <CardMovie>
-            <img src={`${viewPoster(movie.poster_path)}`} alt={movie.title} />
+            <img
+              src={`${viewPoster(movie.poster_path)}`}
+              alt={movie.title}
+              width="240"
+            />
             <MovieInfo>
               <h2> {movie.title} </h2>
               <h3> Overview: </h3>

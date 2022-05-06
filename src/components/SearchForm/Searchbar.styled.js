@@ -33,9 +33,9 @@ export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 10px;
+  margin: 10px;
   max-width: 600px;
-  background-color: #fff;
+  background-color: lightblue;
   border: 2px solid gray;
   border-radius: 3px;
   overflow: hidden;
@@ -47,6 +47,7 @@ export const SearchFormButton = styled.button`
   height: 48px;
   border: 0;
   background-image: url(${img});
+  background-color: yellow;
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
@@ -80,6 +81,7 @@ export const SearchFormInput = styled.input`
   outline: none;
   padding-left: 4px;
   padding-right: 4px;
+  background-color: lightyellow;
   ::placeholder {
     font: inherit;
     font-size: 18px;

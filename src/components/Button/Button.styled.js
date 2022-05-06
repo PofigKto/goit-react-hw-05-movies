@@ -2,7 +2,7 @@ import styled from 'styled-components';
 export const GoBackButton = styled.button`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background-color: lightyellow;
   border-radius: 10%;
 `;
