@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 export const Link = styled.div`
   display: inline-block;
@@ -6,26 +7,26 @@ export const Link = styled.div`
   font-weight: 500;
   color: #2a363b;
   font-size: 18px;
-  :active,
+  /* :active,
   :hover,
   :focus {
-    composes: Link;
+    /* composes: Link; */
+  /* color: #2196f3; */
+  /* } */
+`;
+
+export const LinkElem = styled(NavLink)`
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 26px;
+  &.active {
+    /* composes: link; */
     color: #2196f3;
   }
 `;
-
-// export const NavLink = styled.a`
-//   display: inline-block;
-//   text-decoration: none;
-//   padding: 12px;
-//   font-weight: 500;
-//   color: #2a363b;
-//   font-size: 18px;
-//   :active {
-//     composes: link;
-//     color: #2196f3;
-//   }
-// `;
 
 // .activeLink {
 //     composes: link;
