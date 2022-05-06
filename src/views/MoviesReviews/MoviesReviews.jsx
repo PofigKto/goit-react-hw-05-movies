@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import * as moviesAPI from '../services/movies-api';
+import { useParams, useNavigate } from 'react-router-dom';
+import ButtonGoBack from '../../components/Button';
+import * as moviesAPI from '../../services/movies-api';
+import {
+  AuthorName,
+  Review,
+  AuthorNameValue,
+} from '../MoviesReviews/MoviesReviews.styled';
 
 export default function MoviesReviews() {
   // const params = useParams();
   // console.log(params);
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
-
+  const navigate = useNavigate();
+  console.log(navigate);
   useEffect(() => {
     moviesAPI
       .getReviews(movieId)
@@ -17,12 +24,15 @@ export default function MoviesReviews() {
 
   return (
     <>
+      <ButtonGoBack onClick={() => navigate(-1)} />
       {reviews.length > 0 ? (
         <ul>
           {reviews.map(review => (
             <li key={review.id}>
-              <h3>Author: {review.author}</h3>
-              <p>{review.content}</p>
+              <AuthorName>
+                Author: <AuthorNameValue> {review.author} </AuthorNameValue>
+              </AuthorName>
+              <Review>{review.content}</Review>
             </li>
           ))}
         </ul>

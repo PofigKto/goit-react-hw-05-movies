@@ -5,6 +5,7 @@ import FormBySearch from 'components/SearchForm/SearchForm';
 import { toast } from 'react-toastify';
 import * as movieAPI from '../services/movies-api';
 // import styled from 'styled-components';
+import { Horizontal } from '../views/MovieDetailsView/MovieDetailsView.styled';
 
 export default function SearchMovieByName() {
   const [searchParams] = useSearchParams();
@@ -49,7 +50,7 @@ export default function SearchMovieByName() {
   return (
     <>
       <FormBySearch inSubmit={handleFormSubmit} searchMovie={searchMovie} />
-      <hr />
+      <Horizontal />
       {movies && (
         <ul>
           {movies.map(movie => (

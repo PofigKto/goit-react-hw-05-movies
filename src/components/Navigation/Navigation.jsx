@@ -1,7 +1,7 @@
 // import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { Link } from './Navigation.styled.js';
-//
+import PageHeading from '../../components/PageHeading';
 
 // якщо б ми просто написали тег лінк, то у нас би була перезагрузка сторінка. Тому ми виеористовуємо компонент Лінк, який обгортує ссілку і
 //  , який під капотом не перегружає сторінку, а просто домальовує на ніцй щось, добавляє запис в  історію,
@@ -18,14 +18,16 @@ const Navigation = () => (
     <Link>
       <NavLink to="/" activeClassName="activeLink">
         {/* <NavLink to="/" className="link" activeClassName="activeLink" exact></NavLink> */}
-        HomeView
+        <PageHeading text="HomeView" />
+        {/* HomeView */}
       </NavLink>
     </Link>
 
     {/* <NavLink to="/movies" className="link" activeClassName="activeLink"></NavLink> */}
     <Link>
       <NavLink to="/movies" activeClassName="activeLink">
-        Movies
+        <PageHeading text="Movies" />
+        {/* Movies */}
       </NavLink>
     </Link>
   </nav>

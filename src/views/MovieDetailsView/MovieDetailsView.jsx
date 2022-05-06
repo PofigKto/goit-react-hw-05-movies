@@ -3,7 +3,7 @@ import {
   NavLink,
   Outlet,
   useParams,
-  // useNavigate,
+  useNavigate,
   useLocation,
 } from 'react-router-dom';
 import PageHeading from '../../components/PageHeading/PageHeading';
@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import {
   CardMovie,
   MovieInfo,
+  Horizontal,
 } from '../MovieDetailsView/MovieDetailsView.styled';
 // import { ImArrowLeft } from 'react-icons/im';
 
@@ -37,8 +38,8 @@ export default function MovieDetailsView() {
   // обявляємо стейт для одного фільму і роблю юзефект фетч по муві айді і потім записую це в сетмуві
   const [movie, setMovie] = useState(null);
   // console.log(movie);
-  // const navigate = useNavigate();
-  // console.log(navigate);
+  const navigate = useNavigate();
+  console.log(navigate);
   const location = useLocation;
   console.log(location);
 
@@ -67,13 +68,21 @@ export default function MovieDetailsView() {
 
   return (
     <>
-      <ButtonGoBack />
+      {/* <ButtonGoBack /> */}
+      <Horizontal />
       {/* тут використовуємо динамічний параметр взятий з юзпарамс */}
       {/* якщо прийшда відповідь з бекенду(є фільми) ми можемо щось зарендерить, вибираємо з обєкта що нам потрібно (або це може бути окремий компонент типу карточка фільм кард) */}
       {movie && (
         <>
+          <ButtonGoBack onClick={() => navigate(-1)} />
           <PageHeading text={`${movie.title}`} />
-          <hr />
+          <Horizontal
+          // style={{
+          //   height: '12px',
+          //   border: '0',
+          //   boxShadow: 'inset 0 12px 12px -12px rgba(0,0,0,0.5)',
+          // }}
+          />
           <CardMovie>
             <img src={`${viewPoster(movie.poster_path)}`} alt={movie.title} />
             <MovieInfo>
@@ -90,11 +99,12 @@ export default function MovieDetailsView() {
               (acc, currrent) => acc + ' ' + currrent.name,
               ''
             )} */}
-                <hr />
+                {/* <Horizontal /> */}
               </p>
             </MovieInfo>
           </CardMovie>
-          <h3> Additional information </h3>
+          <Horizontal />
+          <h2> Additional information </h2>
           <Link>
             <NavLink to={`/movies/${movie.id}/cast`} className="Link">
               <PageHeading text="Cast" />

@@ -16,6 +16,7 @@ export const Searchbar = styled.header`
   padding-left: 24px;
   padding-top: 12px;
   padding-bottom: 12px;
+
   color: #fff;
   background-color: #3f51b5;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
@@ -32,6 +33,7 @@ export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   width: 100%;
+  margin-bottom: 10px;
   max-width: 600px;
   background-color: #fff;
   border: 2px solid gray;

@@ -20,7 +20,9 @@ const MovieDetailsView = lazy(() =>
   import('../views/MovieDetailsView/MovieDetailsView')
 );
 const MoviesCast = lazy(() => import('../views/MovieCast'));
-const MoviesReviews = lazy(() => import('../views/MoviesReviews'));
+const MoviesReviews = lazy(() =>
+  import('../views/MoviesReviews/MoviesReviews')
+);
 const NotFoundView = lazy(() => import('../views/NotFoundView'));
 
 export const App = () => {

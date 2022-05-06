@@ -8,10 +8,12 @@ export default function ButtonGoBack({ onClick }) {
   const navigate = useNavigate();
   console.log(navigate);
   return (
-    //   <GoBackButton type="button" onClick={() => navigate('/')}>
-    <GoBackButton type="button" onClick={() => navigate(-1)}>
+    <GoBackButton type="button" onClick={onClick}>
+      {/* <GoBackButton type="button" onClick={() => navigate('/')}> */}
+      {/* <GoBackButton type="button" onClick={() => navigate(-1)}>  */}
       <ImArrowLeft fill="darkblue" size="32" /> <SpanLabel> GO BACK</SpanLabel>
     </GoBackButton>
+    //{' '}
     // </GoBackButton>
   );
 }

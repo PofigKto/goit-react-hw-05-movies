@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import ButtonGoBack from '../../components/Button';
 import * as moviesAPI from '../../services/movies-api';
 import {
   CastGallery,
@@ -13,7 +14,8 @@ export default function MoviesCast() {
   console.log(params);
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
-
+  const navigate = useNavigate();
+  console.log(navigate);
   useEffect(() => {
     moviesAPI.getCast(movieId).then(response => setCast(response.cast));
   }, [movieId]);
@@ -27,6 +29,7 @@ export default function MoviesCast() {
   };
   return (
     <>
+      <ButtonGoBack onClick={() => navigate(-1)} />
       {cast && (
         <CastGallery>
           {cast.map(castOne => (

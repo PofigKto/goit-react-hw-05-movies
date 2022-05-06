@@ -6,12 +6,12 @@ export const Link = styled.div`
   font-weight: 500;
   color: #2a363b;
   font-size: 18px;
-  /* :active,
+  :active,
   :hover,
   :focus {
     composes: Link;
-    color: #2196f3; */
-  /* } */
+    color: #2196f3;
+  }
 `;
 
 // export const NavLink = styled.a`
