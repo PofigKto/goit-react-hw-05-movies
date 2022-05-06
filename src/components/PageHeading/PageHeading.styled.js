@@ -11,15 +11,15 @@ export const Title = styled.h1`
   margin-left: auto;
   margin-right: auto;
   border-radius: 8px;
-  color: #fff;
+  color: #2314f7;
+  font-weight: bold;
   /* font-size: 40px; */
-  font-weight: 400;
   text-align: center;
   background-image: repeating-linear-gradient(
     -45deg,
-    #606dbc,
-    #606dbc 15px,
-    #465298 15px,
-    #465298 30px
+    #30ebfc,
+    #30ebfc 15px,
+    #fcfccf 15px,
+    #fcfccf 30px
   );
 `;

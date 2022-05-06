@@ -24,7 +24,7 @@ export const LinkElem = styled(NavLink)`
   font-size: 26px;
   &.active {
     /* composes: link; */
-    color: #2196f3;
+    color: #2314f7;
   }
 `;
 
