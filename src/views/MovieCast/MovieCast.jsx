@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+// import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import ButtonGoBack from '../../components/Button';
 import * as moviesAPI from '../../services/movies-api';
 import {
@@ -16,8 +16,9 @@ export default function MoviesCast() {
   // console.log(params);
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
-  const navigate = useNavigate();
-  // console.log(navigate);
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  // console.log(location);
   useEffect(() => {
     moviesAPI.getCast(movieId).then(response => setCast(response.cast));
   }, [movieId]);
@@ -28,6 +29,13 @@ export default function MoviesCast() {
       // 'NO POSTER';
     }
     return `https://image.tmdb.org/t/p/w300${profile_path}`;
+  };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 100,
+      // top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   };
   return (
     <>
@@ -53,9 +61,11 @@ export default function MoviesCast() {
         </CastGallery>
       )}
       <ButtonGoBack
-        onClick={() => navigate('..')}
+        // onClick={() => navigate('..')}
+        onClick={scrollToTop}
         label={'GO UP'}
         arrow={<ImArrowUp fill="#2314f7" size="32" />}
+        // state={location.state}
       />
     </>
   );

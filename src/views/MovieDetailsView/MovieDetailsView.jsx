@@ -116,11 +116,11 @@ export default function MovieDetailsView() {
           </CardMovie>
           <Horizontal />
           <Titleh2> Additional information </Titleh2>
-          <LinkElem to={`/movies/${movie.id}/cast`}>
+          <LinkElem to={`/movies/${movie.id}/cast`} state={location.state}>
             {/* <PageHeading text="Cast" /> */}
             Cast
           </LinkElem>
-          <LinkElem to={`/movies/${movie.id}/reviews`}>
+          <LinkElem to={`/movies/${movie.id}/reviews`} state={location.state}>
             {/* <PageHeading text="Reviews" /> */}
             Reviews
           </LinkElem>
