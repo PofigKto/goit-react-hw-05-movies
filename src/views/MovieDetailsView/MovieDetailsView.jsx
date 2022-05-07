@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
-  NavLink,
+  // NavLink,
   Outlet,
   useParams,
   useNavigate,
@@ -9,22 +9,16 @@ import {
 import PageHeading from '../../components/PageHeading/PageHeading';
 import ButtonGoBack from '../../components/Button';
 import * as movieAPI from '../../services/movies-api';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import {
   CardMovie,
   MovieInfo,
   Horizontal,
+  LinkElem,
+  Titleh2,
+  Titleh3,
 } from '../MovieDetailsView/MovieDetailsView.styled';
-// import { ImArrowLeft } from 'react-icons/im';
-
-const Link = styled.div`
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px;
-  font-weight: 500;
-  color: #2a363b;
-  font-size: 18px;
-`;
+import { ImArrowLeft } from 'react-icons/im';
 
 export default function MovieDetailsView() {
   // щоб отримати айдішнік одного фільму викоритовуємо хук - юз парамс
@@ -39,9 +33,13 @@ export default function MovieDetailsView() {
   const [movie, setMovie] = useState(null);
   // console.log(movie);
   const navigate = useNavigate();
-  console.log(navigate);
-  const location = useLocation;
-  console.log(location);
+  // console.log(navigate);
+  const location = useLocation();
+  const locationState = location.state;
+  const locationStateSearch = location.search;
+  console.log(locationStateSearch);
+  // const prevLocation = location.state.pathname;
+  console.log('MovieDetailsView: ', locationState);
 
   useEffect(() => {
     movieAPI.getMoviesById(movieId).then(response => setMovie(response));
@@ -66,6 +64,16 @@ export default function MovieDetailsView() {
     return genres.map(genre => genre.name).join(', ');
   };
 
+  const onButtonGoBackClick = () => {
+    // перевіряємо , чи є стейт?
+    // якщо є, то переходимо за адресою з паснейм (звізки ми прийшли на цю сторінку)+ що було в рядку пошукуЖ
+    // (якщо там нічого не було, то просто повернемося на попередню сторінку, якщо в  стейті пошуку щось було - повернемося на сторінку пошуку
+    // якщо стейт нул - тобто ми просто відкрили карту фільма за посиланням, наприклад з гуглу, то
+    // переходимо на нашу початкову сторінку.
+    location.state
+      ? navigate(location.state.pathname + location.state.search)
+      : navigate('/');
+  };
   return (
     <>
       {/* <ButtonGoBack /> */}
@@ -74,7 +82,12 @@ export default function MovieDetailsView() {
       {/* якщо прийшда відповідь з бекенду(є фільми) ми можемо щось зарендерить, вибираємо з обєкта що нам потрібно (або це може бути окремий компонент типу карточка фільм кард) */}
       {movie && (
         <>
-          <ButtonGoBack onClick={() => navigate(-1)} />
+          {/* <ButtonGoBack onClick={() => navigate(prevLocation)} /> */}
+          <ButtonGoBack
+            onClick={onButtonGoBackClick}
+            label={'GO BACK'}
+            arrow={<ImArrowLeft fill="#2314f7" size="32" />}
+          />
           <PageHeading text={`${movie.title}`} />
           <Horizontal />
           <CardMovie>
@@ -84,11 +97,11 @@ export default function MovieDetailsView() {
               width="240"
             />
             <MovieInfo>
-              <h2> {movie.title} </h2>
-              <h3> Overview: </h3>
+              <Titleh2> {movie.title} </Titleh2>
+              <Titleh3> Overview: </Titleh3>
               <p> {movie.overview} </p>
               <p> User score: {`${userScore(movie.vote_average)}`} </p>
-              <h3> Genres: </h3>
+              <Titleh3> Genres: </Titleh3>
               <p>
                 {`${allGenres(movie.genres)}`}
                 {/* інший варіант через редьюс - перший аргумент функціі колбек, що приймає акк і текуще значення, 
@@ -102,20 +115,16 @@ export default function MovieDetailsView() {
             </MovieInfo>
           </CardMovie>
           <Horizontal />
-          <h2> Additional information </h2>
-          <Link>
-            <NavLink to={`/movies/${movie.id}/cast`} className="Link">
-              <PageHeading text="Cast" />
-              {/* Cast */}
-            </NavLink>
-          </Link>
+          <Titleh2> Additional information </Titleh2>
+          <LinkElem to={`/movies/${movie.id}/cast`}>
+            {/* <PageHeading text="Cast" /> */}
+            Cast
+          </LinkElem>
+          <LinkElem to={`/movies/${movie.id}/reviews`}>
+            {/* <PageHeading text="Reviews" /> */}
+            Reviews
+          </LinkElem>
 
-          <Link>
-            <NavLink to={`/movies/${movie.id}/reviews`} className="Link">
-              <PageHeading text="Reviews" />
-              {/* Reviews */}
-            </NavLink>
-          </Link>
           {/* тут будуть рендериться відповідні інфо без перезагрузки сторінки */}
           <Outlet />
         </>

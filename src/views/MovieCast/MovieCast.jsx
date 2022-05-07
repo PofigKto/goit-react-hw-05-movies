@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import ButtonGoBack from '../../components/Button';
 import * as moviesAPI from '../../services/movies-api';
@@ -8,18 +9,19 @@ import {
   CharacterValue,
   CastName,
 } from '../MovieCast/MovieCast.styled';
+import { ImArrowUp } from 'react-icons/im';
 
 export default function MoviesCast() {
-  const params = useParams();
-  console.log(params);
+  // const params = useParams();
+  // console.log(params);
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
   const navigate = useNavigate();
-  console.log(navigate);
+  // console.log(navigate);
   useEffect(() => {
     moviesAPI.getCast(movieId).then(response => setCast(response.cast));
   }, [movieId]);
-  console.log(cast);
+  // console.log(cast);
   const viewPoster = profile_path => {
     if (profile_path === null) {
       return 'https://wipfilms.net/wp-content/data/posters/tt0338683.jpg';
@@ -29,7 +31,6 @@ export default function MoviesCast() {
   };
   return (
     <>
-      <ButtonGoBack onClick={() => navigate(-1)} />
       {cast && (
         <CastGallery>
           {cast.map(castOne => (
@@ -51,6 +52,11 @@ export default function MoviesCast() {
           ))}
         </CastGallery>
       )}
+      <ButtonGoBack
+        onClick={() => navigate('..')}
+        label={'GO UP'}
+        arrow={<ImArrowUp fill="#2314f7" size="32" />}
+      />
     </>
   );
 }

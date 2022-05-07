@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import FormBySearch from 'components/SearchForm/SearchForm';
 import { toast } from 'react-toastify';
@@ -21,7 +21,9 @@ export default function SearchMovieByName() {
   // URLSearchParams.get();
   // console.log(search);
   const navigate = useNavigate();
-  console.log(movies);
+  const location = useLocation();
+  console.log('search:', location);
+  // console.log(movies);
   useEffect(() => {
     // якщо рядок пустий (або щось фолс), то не робимо запит і просто виходимо з юзєфекта
     if (!searchMovie) {
@@ -39,8 +41,7 @@ export default function SearchMovieByName() {
   }, [searchMovie]);
 
   const handleFormSubmit = searchMovie => {
-    console.log(searchMovie);
-    // resetPage();
+    // console.log(searchMovie);
     // дописали в адресному рядку квері із значенням пошуку
     navigate(`/movies/?query=${searchMovie}`);
     setSearchMovie(searchMovie);
@@ -57,8 +58,8 @@ export default function SearchMovieByName() {
             <NavLink
               // to={`/movies/?query=${searchMovie}`}
               to={`/movies/${movie.id}`}
+              state={location}
               key={movie.id}
-              className="Link"
             >
               <p>{movie.title}</p>
             </NavLink>

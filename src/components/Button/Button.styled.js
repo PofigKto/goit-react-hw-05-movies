@@ -4,10 +4,14 @@ export const GoBackButton = styled.button`
   align-items: center;
   margin-bottom: 10px;
   background-color: lightyellow;
-  border-radius: 10%;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 10px 1px #30ebfc;
+  padding: 5px;
 `;
 export const SpanLabel = styled.span`
   margin-left: 10px;
-  color: darkblue;
+  color: #2314f7;
   font-weight: 700;
+  padding: 5px;
 `;

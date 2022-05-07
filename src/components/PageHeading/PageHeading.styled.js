@@ -5,7 +5,7 @@ export const Title = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 5px;
   margin-top: 0;
   margin-bottom: 10px;
   margin-left: auto;

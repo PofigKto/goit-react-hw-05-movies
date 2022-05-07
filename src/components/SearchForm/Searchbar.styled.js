@@ -35,10 +35,11 @@ export const SearchForm = styled.form`
   width: 100%;
   margin: 10px;
   max-width: 600px;
-  background-color: lightblue;
-  border: 2px solid gray;
+  background-color: lightyellow;
+  border: 2px solid #30ebfc;
   border-radius: 3px;
   overflow: hidden;
+  box-shadow: 0 0 10px 1px #30ebfc;
 `;
 
 export const SearchFormButton = styled.button`
@@ -47,7 +48,7 @@ export const SearchFormButton = styled.button`
   height: 48px;
   border: 0;
   background-image: url(${img});
-  background-color: yellow;
+  background-color: #30ebfc;
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;

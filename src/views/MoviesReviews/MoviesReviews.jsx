@@ -7,24 +7,21 @@ import {
   Review,
   AuthorNameValue,
 } from '../MoviesReviews/MoviesReviews.styled';
+import { ImArrowUp } from 'react-icons/im';
 
 export default function MoviesReviews() {
-  // const params = useParams();
-  // console.log(params);
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
-  console.log(navigate);
   useEffect(() => {
     moviesAPI
       .getReviews(movieId)
       .then(response => setReviews(response.results));
   }, [movieId]);
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
     <>
-      <ButtonGoBack onClick={() => navigate(-1)} />
       {reviews.length > 0 ? (
         <ul>
           {reviews.map(review => (
@@ -35,6 +32,13 @@ export default function MoviesReviews() {
               <Review>{review.content}</Review>
             </li>
           ))}
+          <ButtonGoBack
+            onClick={() => {
+              navigate('..');
+            }}
+            label={'GO UP'}
+            arrow={<ImArrowUp fill="#2314f7" size="32" />}
+          />
         </ul>
       ) : (
         <p>We don't have any reviews for this movie</p>

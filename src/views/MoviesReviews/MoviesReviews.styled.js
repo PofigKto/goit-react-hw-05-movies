@@ -4,6 +4,7 @@ export const AuthorName = styled.h3`
   font-weight: bold;
 `;
 export const Review = styled.p`
+  text-align: justify;
   display: flex;
   flex-direction: column;
   color: darkblue;
