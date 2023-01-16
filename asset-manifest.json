@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/goit-react-hw-05-movies/static/css/main.1dbc3327.css",
+    "main.js": "/goit-react-hw-05-movies/static/js/main.b8bb990f.js",
+    "static/js/561.60a57c8a.chunk.js": "/goit-react-hw-05-movies/static/js/561.60a57c8a.chunk.js",
+    "static/js/484.d2d385e0.chunk.js": "/goit-react-hw-05-movies/static/js/484.d2d385e0.chunk.js",
+    "static/js/491.e09e6622.chunk.js": "/goit-react-hw-05-movies/static/js/491.e09e6622.chunk.js",
+    "static/js/736.34f5735d.chunk.js": "/goit-react-hw-05-movies/static/js/736.34f5735d.chunk.js",
+    "static/js/999.5ec94d83.chunk.js": "/goit-react-hw-05-movies/static/js/999.5ec94d83.chunk.js",
+    "static/js/770.72cffe46.chunk.js": "/goit-react-hw-05-movies/static/js/770.72cffe46.chunk.js",
+    "static/js/566.3b0cbc73.chunk.js": "/goit-react-hw-05-movies/static/js/566.3b0cbc73.chunk.js",
+    "static/js/105.706ffd9f.chunk.js": "/goit-react-hw-05-movies/static/js/105.706ffd9f.chunk.js",
+    "index.html": "/goit-react-hw-05-movies/index.html",
+    "main.1dbc3327.css.map": "/goit-react-hw-05-movies/static/css/main.1dbc3327.css.map",
+    "main.b8bb990f.js.map": "/goit-react-hw-05-movies/static/js/main.b8bb990f.js.map",
+    "561.60a57c8a.chunk.js.map": "/goit-react-hw-05-movies/static/js/561.60a57c8a.chunk.js.map",
+    "484.d2d385e0.chunk.js.map": "/goit-react-hw-05-movies/static/js/484.d2d385e0.chunk.js.map",
+    "491.e09e6622.chunk.js.map": "/goit-react-hw-05-movies/static/js/491.e09e6622.chunk.js.map",
+    "736.34f5735d.chunk.js.map": "/goit-react-hw-05-movies/static/js/736.34f5735d.chunk.js.map",
+    "999.5ec94d83.chunk.js.map": "/goit-react-hw-05-movies/static/js/999.5ec94d83.chunk.js.map",
+    "770.72cffe46.chunk.js.map": "/goit-react-hw-05-movies/static/js/770.72cffe46.chunk.js.map",
+    "566.3b0cbc73.chunk.js.map": "/goit-react-hw-05-movies/static/js/566.3b0cbc73.chunk.js.map",
+    "105.706ffd9f.chunk.js.map": "/goit-react-hw-05-movies/static/js/105.706ffd9f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1dbc3327.css",
+    "static/js/main.b8bb990f.js"
+  ]
+}
